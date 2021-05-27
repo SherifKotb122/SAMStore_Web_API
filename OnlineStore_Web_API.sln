@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore_Web_API", "OnlineStore_Web_API\OnlineStore_Web_API.csproj", "{CA12BCED-CDC0-4A95-8F0F-FFE1F411928E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA12BCED-CDC0-4A95-8F0F-FFE1F411928E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA12BCED-CDC0-4A95-8F0F-FFE1F411928E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA12BCED-CDC0-4A95-8F0F-FFE1F411928E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA12BCED-CDC0-4A95-8F0F-FFE1F411928E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78817E57-15DE-484E-8522-5742767758CC}
+	EndGlobalSection
+EndGlobal

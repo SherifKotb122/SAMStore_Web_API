@@ -1,0 +1,1020 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OnlineStore_APIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="addressID" />
+          </Key>
+          <Property Name="addressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="addressPhone" Type="int" />
+          <Property Name="addressDetails" Type="nvarchar(max)" />
+          <Property Name="shippingID" Type="int" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedUserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEnd" Type="datetimeoffset" Precision="7" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="billID" />
+          </Key>
+          <Property Name="billID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="billSubTotal" Type="float" />
+          <Property Name="billTotal" Type="float" />
+          <Property Name="billDate" Type="date" />
+          <Property Name="billNotes" Type="nvarchar(max)" />
+          <Property Name="addressID" Type="int" />
+          <Property Name="paymentID" Type="int" />
+          <Property Name="userID" Type="nvarchar" MaxLength="450" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillProduct">
+          <Key>
+            <PropertyRef Name="billProductID" />
+          </Key>
+          <Property Name="billProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="billID" Type="int" />
+          <Property Name="productID" Type="int" />
+          <Property Name="billProductQuantity" Type="int" />
+          <Property Name="billProductPrice" Type="float" />
+          <Property Name="storeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cartID" />
+          </Key>
+          <Property Name="cartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userID" Type="nvarchar" MaxLength="450" />
+          <Property Name="storeID" Type="int" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="className" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="paymentID" />
+          </Key>
+          <Property Name="paymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paymentType" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productName" Type="nvarchar" MaxLength="50" />
+          <Property Name="productBrand" Type="nvarchar" MaxLength="50" />
+          <Property Name="productMaterial" Type="nvarchar" MaxLength="50" />
+          <Property Name="productPrice" Type="float" />
+          <Property Name="productDiscount" Type="float" />
+          <Property Name="productDescription" Type="nvarchar(max)" />
+          <Property Name="classID" Type="int" />
+          <Property Name="categoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="reviewID" />
+          </Key>
+          <Property Name="userID" Type="nvarchar" MaxLength="450" />
+          <Property Name="productID" Type="int" />
+          <Property Name="rate" Type="int" />
+          <Property Name="reviewNotes" Type="nvarchar(max)" />
+          <Property Name="reviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipping">
+          <Key>
+            <PropertyRef Name="shippingID" />
+          </Key>
+          <Property Name="shippingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shippingGovernment" Type="nvarchar" MaxLength="50" />
+          <Property Name="shippingCost" Type="float" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="productID" Type="int" />
+          <Property Name="productColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="productSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="productQuantity" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productPhoto" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="WishList">
+          <Key>
+            <PropertyRef Name="wishListID" />
+          </Key>
+          <Property Name="wishListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userID" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="productID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Address__shippin__1ED998B2">
+          <End Role="Shipping" Type="Self.Shipping" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping">
+              <PropertyRef Name="shippingID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="shippingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bill__addressID__239E4DCF">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="addressID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="addressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bill__paymentID__24927208">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="paymentID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="paymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__billI__276EDEB3">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="BillProduct" Type="Self.BillProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillProduct">
+              <PropertyRef Name="storeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__produ__286302EC">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="BillProduct" Type="Self.BillProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="BillProduct">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__categor__164452B1">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__classID__15502E78">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__productI__5535A963">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__userID__5441852A">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Store__productID__182C9B23">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WishList__produc__2B3F6F97">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="storeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WishList_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineStore_APIModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillProduct" EntityType="Self.BillProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipping" EntityType="Self.Shipping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WishList" EntityType="Self.WishList" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Address__shippin__1ED998B2" Association="Self.FK__Address__shippin__1ED998B2">
+            <End Role="Shipping" EntitySet="Shipping" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bill__addressID__239E4DCF" Association="Self.FK__Bill__addressID__239E4DCF">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bill__paymentID__24927208" Association="Self.FK__Bill__paymentID__24927208">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__billI__276EDEB3" Association="Self.FK__BillProdu__billI__276EDEB3">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="BillProduct" EntitySet="BillProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__produ__286302EC" Association="Self.FK__BillProdu__produ__286302EC">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="BillProduct" EntitySet="BillProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__categor__164452B1" Association="Self.FK__Product__categor__164452B1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__classID__15502E78" Association="Self.FK__Product__classID__15502E78">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__productI__5535A963" Association="Self.FK__Review__productI__5535A963">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__userID__5441852A" Association="Self.FK__Review__userID__5441852A">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Store__productID__182C9B23" Association="Self.FK__Store__productID__182C9B23">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WishList__produc__2B3F6F97" Association="Self.FK__WishList__produc__2B3F6F97">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="WishList" EntitySet="WishList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_AspNetUsers" Association="Self.FK_Bill_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_AspNetUsers" Association="Self.FK_Cart_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Store" Association="Self.FK_Cart_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WishList_AspNetUsers" Association="Self.FK_WishList_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WishList" EntitySet="WishList" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineStore_APIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="addressID" />
+          </Key>
+          <Property Name="addressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="addressPhone" Type="Int32" />
+          <Property Name="addressDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="shippingID" Type="Int32" />
+          <NavigationProperty Name="Shipping" Relationship="Self.FK__Address__shippin__1ED998B2" FromRole="Address" ToRole="Shipping" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__addressID__239E4DCF" FromRole="Address" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="billID" />
+          </Key>
+          <Property Name="billID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="billSubTotal" Type="Double" />
+          <Property Name="billTotal" Type="Double" />
+          <Property Name="billDate" Type="DateTime" Precision="0" />
+          <Property Name="billNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="addressID" Type="Int32" />
+          <Property Name="paymentID" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="Self.FK__Bill__addressID__239E4DCF" FromRole="Bill" ToRole="Address" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK__Bill__paymentID__24927208" FromRole="Bill" ToRole="Payment" />
+          <NavigationProperty Name="BillProducts" Relationship="Self.FK__BillProdu__billI__276EDEB3" FromRole="Bill" ToRole="BillProduct" />
+          <Property Name="userID" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="OnlineStore_APIModel.FK_Bill_AspNetUsers" FromRole="Bill" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="BillProduct">
+          <Key>
+            <PropertyRef Name="billProductID" />
+          </Key>
+          <Property Name="billProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="billID" Type="Int32" />
+          <Property Name="productID" Type="Int32" />
+          <Property Name="billProductQuantity" Type="Int32" />
+          <Property Name="billProductPrice" Type="Double" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK__BillProdu__billI__276EDEB3" FromRole="BillProduct" ToRole="Bill" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__BillProdu__produ__286302EC" FromRole="BillProduct" ToRole="Product" />
+          <Property Name="storeID" Type="Int32" />
+          <NavigationProperty Name="Store" Relationship="OnlineStore_APIModel.FK__BillProdu__billI__276EDEB31" FromRole="BillProduct" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__categor__164452B1" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="className" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__classID__15502E78" FromRole="Class" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="paymentID" />
+          </Key>
+          <Property Name="paymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paymentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__paymentID__24927208" FromRole="Payment" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="productBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="productMaterial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="productPrice" Type="Double" />
+          <Property Name="productDiscount" Type="Double" />
+          <Property Name="productDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="classID" Type="Int32" />
+          <Property Name="categoryID" Type="Int32" />
+          <NavigationProperty Name="BillProducts" Relationship="Self.FK__BillProdu__produ__286302EC" FromRole="Product" ToRole="BillProduct" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Product__categor__164452B1" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__Product__classID__15502E78" FromRole="Product" ToRole="Class" />
+          <NavigationProperty Name="WishLists" Relationship="Self.FK__WishList__produc__2B3F6F97" FromRole="Product" ToRole="WishList" />
+          <NavigationProperty Name="Reviews" Relationship="OnlineStore_APIModel.FK__Review__productI__5535A963" FromRole="Product" ToRole="Review" />
+          <NavigationProperty Name="Stores" Relationship="OnlineStore_APIModel.FK__Store__productID__182C9B23" FromRole="Product" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Shipping">
+          <Key>
+            <PropertyRef Name="shippingID" />
+          </Key>
+          <Property Name="shippingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shippingGovernment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shippingCost" Type="Double" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK__Address__shippin__1ED998B2" FromRole="Shipping" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="WishList">
+          <Key>
+            <PropertyRef Name="wishListID" />
+          </Key>
+          <Property Name="wishListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productID" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__WishList__produc__2B3F6F97" FromRole="WishList" ToRole="Product" />
+          <Property Name="userID" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="OnlineStore_APIModel.FK_WishList_AspNetUsers" FromRole="WishList" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK__Address__shippin__1ED998B2">
+          <End Role="Shipping" Type="Self.Shipping" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping">
+              <PropertyRef Name="shippingID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="shippingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bill__addressID__239E4DCF">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="addressID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="addressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bill__paymentID__24927208">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="paymentID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="paymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__billI__276EDEB3">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+          <End Role="BillProduct" Type="Self.BillProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="billID" />
+            </Principal>
+            <Dependent Role="BillProduct">
+              <PropertyRef Name="billID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__produ__286302EC">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="BillProduct" Type="Self.BillProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="BillProduct">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__categor__164452B1">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__classID__15502E78">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WishList__produc__2B3F6F97">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineStore_APIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="BillProducts" EntityType="Self.BillProduct" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Shippings" EntityType="Self.Shipping" />
+          <EntitySet Name="WishLists" EntityType="Self.WishList" />
+          <AssociationSet Name="FK__Address__shippin__1ED998B2" Association="Self.FK__Address__shippin__1ED998B2">
+            <End Role="Shipping" EntitySet="Shippings" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bill__addressID__239E4DCF" Association="Self.FK__Bill__addressID__239E4DCF">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bill__paymentID__24927208" Association="Self.FK__Bill__paymentID__24927208">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__billI__276EDEB3" Association="Self.FK__BillProdu__billI__276EDEB3">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="BillProduct" EntitySet="BillProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__produ__286302EC" Association="Self.FK__BillProdu__produ__286302EC">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="BillProduct" EntitySet="BillProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__categor__164452B1" Association="Self.FK__Product__categor__164452B1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__classID__15502E78" Association="Self.FK__Product__classID__15502E78">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WishList__produc__2B3F6F97" Association="Self.FK__WishList__produc__2B3F6F97">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="WishList" EntitySet="WishLists" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="OnlineStore_APIModel.AspNetUser" />
+          <AssociationSet Name="FK_Bill_AspNetUsers" Association="OnlineStore_APIModel.FK_Bill_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WishList_AspNetUsers" Association="OnlineStore_APIModel.FK_WishList_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WishList" EntitySet="WishLists" />
+          </AssociationSet>
+          <EntitySet Name="Reviews" EntityType="OnlineStore_APIModel.Review" />
+          <EntitySet Name="Stores" EntityType="OnlineStore_APIModel.Store" />
+          <AssociationSet Name="FK__Review__userID__5441852A" Association="OnlineStore_APIModel.FK__Review__userID__5441852A">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__productI__5535A963" Association="OnlineStore_APIModel.FK__Review__productI__5535A963">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Store__productID__182C9B23" Association="OnlineStore_APIModel.FK__Store__productID__182C9B23">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <EntitySet Name="Carts" EntityType="OnlineStore_APIModel.Cart" />
+          <AssociationSet Name="FK_Cart_AspNetUsers" Association="OnlineStore_APIModel.FK_Cart_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Store" Association="OnlineStore_APIModel.FK_Cart_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__billI__276EDEB31" Association="OnlineStore_APIModel.FK__BillProdu__billI__276EDEB31">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="BillProduct" EntitySet="BillProducts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEnd" Type="DateTimeOffset" Precision="7" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="OnlineStore_APIModel.FK_Bill_AspNetUsers" FromRole="AspNetUser" ToRole="Bill" />
+          <NavigationProperty Name="WishLists" Relationship="OnlineStore_APIModel.FK_WishList_AspNetUsers" FromRole="AspNetUser" ToRole="WishList" />
+          <NavigationProperty Name="Reviews" Relationship="OnlineStore_APIModel.FK__Review__userID__5441852A" FromRole="AspNetUser" ToRole="Review" />
+          <NavigationProperty Name="Carts" Relationship="OnlineStore_APIModel.FK_Cart_AspNetUsers" FromRole="AspNetUser" ToRole="Cart" />
+        </EntityType>
+        <Association Name="FK_Bill_AspNetUsers">
+          <End Type="OnlineStore_APIModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="OnlineStore_APIModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WishList_AspNetUsers">
+          <End Type="OnlineStore_APIModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="OnlineStore_APIModel.WishList" Role="WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="reviewID" />
+          </Key>
+          <Property Name="userID" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="productID" Type="Int32" />
+          <Property Name="rate" Type="Int32" />
+          <Property Name="reviewNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="reviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="AspNetUser" Relationship="OnlineStore_APIModel.FK__Review__userID__5441852A" FromRole="Review" ToRole="AspNetUser" />
+          <NavigationProperty Name="Product" Relationship="OnlineStore_APIModel.FK__Review__productI__5535A963" FromRole="Review" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="productID" Type="Int32" />
+          <Property Name="productColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="productSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="productQuantity" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Product" Relationship="OnlineStore_APIModel.FK__Store__productID__182C9B23" FromRole="Store" ToRole="Product" />
+          <NavigationProperty Name="Carts" Relationship="OnlineStore_APIModel.FK_Cart_Store" FromRole="Store" ToRole="Cart" />
+          <NavigationProperty Name="BillProducts" Relationship="OnlineStore_APIModel.FK__BillProdu__billI__276EDEB31" FromRole="Store" ToRole="BillProduct" />
+          <Property Name="productPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Review__userID__5441852A">
+          <End Type="OnlineStore_APIModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="OnlineStore_APIModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__productI__5535A963">
+          <End Type="OnlineStore_APIModel.Product" Role="Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="OnlineStore_APIModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Store__productID__182C9B23">
+          <End Type="OnlineStore_APIModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="OnlineStore_APIModel.Store" Role="Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cartID" />
+          </Key>
+          <Property Name="cartID" Type="Int32" Nullable="false" />
+          <Property Name="userID" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="storeID" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="OnlineStore_APIModel.FK_Cart_AspNetUsers" FromRole="Cart" ToRole="AspNetUser" />
+          <NavigationProperty Name="Store" Relationship="OnlineStore_APIModel.FK_Cart_Store" FromRole="Cart" ToRole="Store" />
+        </EntityType>
+        <Association Name="FK_Cart_AspNetUsers">
+          <End Type="OnlineStore_APIModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="OnlineStore_APIModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Store">
+          <End Type="OnlineStore_APIModel.Store" Role="Store" Multiplicity="0..1" />
+          <End Type="OnlineStore_APIModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="storeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__billI__276EDEB31">
+          <End Type="OnlineStore_APIModel.Store" Role="Store" Multiplicity="0..1" />
+          <End Type="OnlineStore_APIModel.BillProduct" Role="BillProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillProduct">
+              <PropertyRef Name="storeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineStore_APIModelStoreContainer" CdmEntityContainer="OnlineStore_APIEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="addressID" ColumnName="addressID" />
+                <ScalarProperty Name="addressPhone" ColumnName="addressPhone" />
+                <ScalarProperty Name="addressDetails" ColumnName="addressDetails" />
+                <ScalarProperty Name="shippingID" ColumnName="shippingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="billID" ColumnName="billID" />
+                <ScalarProperty Name="billSubTotal" ColumnName="billSubTotal" />
+                <ScalarProperty Name="billTotal" ColumnName="billTotal" />
+                <ScalarProperty Name="billDate" ColumnName="billDate" />
+                <ScalarProperty Name="billNotes" ColumnName="billNotes" />
+                <ScalarProperty Name="addressID" ColumnName="addressID" />
+                <ScalarProperty Name="paymentID" ColumnName="paymentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillProducts">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.BillProduct">
+              <MappingFragment StoreEntitySet="BillProduct">
+                <ScalarProperty Name="storeID" ColumnName="storeID" />
+                <ScalarProperty Name="billProductID" ColumnName="billProductID" />
+                <ScalarProperty Name="billID" ColumnName="billID" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="billProductQuantity" ColumnName="billProductQuantity" />
+                <ScalarProperty Name="billProductPrice" ColumnName="billProductPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="className" ColumnName="className" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="paymentID" ColumnName="paymentID" />
+                <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="productBrand" ColumnName="productBrand" />
+                <ScalarProperty Name="productMaterial" ColumnName="productMaterial" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+                <ScalarProperty Name="productDiscount" ColumnName="productDiscount" />
+                <ScalarProperty Name="productDescription" ColumnName="productDescription" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippings">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Shipping">
+              <MappingFragment StoreEntitySet="Shipping">
+                <ScalarProperty Name="shippingID" ColumnName="shippingID" />
+                <ScalarProperty Name="shippingGovernment" ColumnName="shippingGovernment" />
+                <ScalarProperty Name="shippingCost" ColumnName="shippingCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WishLists">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.WishList">
+              <MappingFragment StoreEntitySet="WishList">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="wishListID" ColumnName="wishListID" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="reviewID" ColumnName="reviewID" />
+                <ScalarProperty Name="reviewNotes" ColumnName="reviewNotes" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="productPhoto" ColumnName="productPhoto" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
+                <ScalarProperty Name="productSize" ColumnName="productSize" />
+                <ScalarProperty Name="productColor" ColumnName="productColor" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="OnlineStore_APIModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="storeID" ColumnName="storeID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="cartID" ColumnName="cartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

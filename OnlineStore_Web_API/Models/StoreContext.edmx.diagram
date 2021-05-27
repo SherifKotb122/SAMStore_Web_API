@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b8fb58bb8534f00a3b64ec7aa69de07" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Address" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Bill" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.BillProduct" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Category" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Class" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Payment" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Product" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Shipping" Width="1.5" PointX="1.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.WishList" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Address__shippin__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Bill__addressID__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Bill__paymentID__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__BillProdu__billI__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__BillProdu__produ__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Product__categor__164452B1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Product__classID__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__WishList__produc__2B3F6F97" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.AspNetUser" Width="1.5" PointX="0.5" PointY="6.625" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK_Bill_AspNetUsers" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK_WishList_AspNetUsers" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Review" Width="1.5" PointX="8.25" PointY="7.125" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Store" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Review__userID__5441852A" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Review__productI__5535A963" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__Store__productID__182C9B23" />
+        <EntityTypeShape EntityType="OnlineStore_APIModel.Cart" Width="1.5" PointX="7.5" PointY="3.875" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK_Cart_AspNetUsers" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK_Cart_Store" />
+        <AssociationConnector Association="OnlineStore_APIModel.FK__BillProdu__billI__276EDEB31" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
